@@ -1,0 +1,3 @@
+name: Hardening plan loop
+description: Iteratively review and fix a plan by verifying claims against code and
+  documentation.

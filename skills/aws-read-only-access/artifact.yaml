@@ -1,0 +1,15 @@
+name: aws-read-only-access
+description:
+  Use a generic AWS read-only profile for safe inspection and debugging.
+  Use when running non-mutating AWS CLI commands, verifying caller identity, or investigating
+  read-only access issues.
+dependencies:
+  env:
+    AWS_PROFILE:
+      local:
+        default: default
+      description: Local AWS profile used for read-only AWS commands.
+    AWS_REGION:
+      local:
+        default: us-east-1
+      description: Default AWS region for region-scoped read-only CLI commands.

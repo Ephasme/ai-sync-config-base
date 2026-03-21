@@ -1,0 +1,27 @@
+name: AWS Documentation
+description: AWS documentation lookup and reference retrieval.
+method: stdio
+command: uvx
+args: ["awslabs.aws-documentation-mcp-server@latest"]
+dependencies:
+  env:
+    FASTMCP_LOG_LEVEL:
+      local:
+        default: "ERROR"
+      description: Log level for the MCP server process.
+    AWS_DOCUMENTATION_PARTITION:
+      local:
+        default: "aws"
+      description: AWS partition (aws, aws-cn, aws-us-gov, …).
+    AWS_PROFILE:
+      local:
+        default: "default"
+      description: Local AWS profile when the server calls AWS APIs.
+    AWS_REGION:
+      local:
+        default: us-east-1
+      description: Default AWS region when the server needs a region.
+  binaries:
+    - name: uvx
+      version:
+        require: ^0.9.9

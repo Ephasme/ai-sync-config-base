@@ -1,0 +1,4 @@
+name: create-mcp-server
+description: Add a new MCP server to an ai-sync config repository at mcp-servers/<server-id>/artifact.yaml,
+  with optional requirements and env entries. Use when you need to register a new
+  MCP server for ai-sync distribution.

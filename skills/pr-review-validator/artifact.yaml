@@ -1,0 +1,6 @@
+name: pr-review-validator
+description:
+  Fetch unresolved GitHub PR review threads, write them to a temporary
+  file, and produce an evidence-backed triage report (severity/validity, fixes, and
+  DO/DON'T recommendation). Use when asked to gather unresolved PR comments from a
+  full GitHub PR URL and assess each against the local codebase or official documentation.

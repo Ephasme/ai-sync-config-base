@@ -1,0 +1,3 @@
+name: Check plan implementation
+description: Review whether the current implementation strictly respects a specific
+  plan.

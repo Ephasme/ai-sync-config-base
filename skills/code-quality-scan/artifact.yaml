@@ -1,0 +1,7 @@
+name: code-quality-scan
+description: Scan a codebase for structural quality issues including dead code,
+  architecture anti-patterns, SOLID/DRY/YAGNI/KISS violations, overengineering,
+  high cyclomatic complexity, and naming problems. Use when the user asks for a
+  code review, health check, quality audit, tech debt assessment, code smell
+  detection, refactoring preparation, or pattern detection across any language
+  or framework.

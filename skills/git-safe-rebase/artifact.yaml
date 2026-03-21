@@ -1,0 +1,6 @@
+name: git-safe-rebase
+description:
+  Safely rebase the current git branch onto an agreed remote tracking branch
+  (e.g. origin/main or origin/develop) using a strict workflow (stash, update baseline,
+  conflict scouting, plan, rebase) and produce an evidence-backed conflict report.
+  Use when a user asks for a cautious rebase with conflict planning.

@@ -1,0 +1,4 @@
+name: create-command
+description: Create an ai-sync source command artifact at commands/<name>/artifact.yaml
+  in an ai-config repository. Use when you need a new reusable agent command with
+  clear instructions and acceptance criteria.

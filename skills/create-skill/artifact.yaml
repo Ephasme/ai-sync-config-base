@@ -1,0 +1,4 @@
+name: create-skill
+description: Create ai-sync source skills under skills/<name>/artifact.yaml in an
+  ai-config repository only, with neutral wording and evidence-based best practices
+  from reliable recent sources.

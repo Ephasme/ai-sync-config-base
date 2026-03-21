@@ -1,0 +1,16 @@
+name: RDS MariaDB performance domain context
+description: >-
+  Optional domain context for verifying technical claims about AWS RDS MariaDB
+  performance (Performance Schema, Performance Insights, slow query logs, parameter
+  limits). Pair with the document_claim_verification command when the document
+  concerns RDS MariaDB operations or tuning.
+dependencies:
+  env:
+    AWS_PROFILE:
+      local:
+        default: "default"
+      description: Local AWS profile for read-only AWS CLI usage in this workflow.
+    AWS_REGION:
+      local:
+        default: "us-east-1"
+      description: AWS region for RDS, Performance Insights API, and CloudWatch queries.

@@ -1,0 +1,10 @@
+name: Fetch
+description: Read-only web content fetching from public URLs.
+method: stdio
+command: uvx
+args: ["mcp-server-fetch"]
+dependencies:
+  binaries:
+    - name: uvx
+      version:
+        require: ^0.9.9

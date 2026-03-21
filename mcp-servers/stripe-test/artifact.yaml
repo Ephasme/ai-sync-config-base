@@ -1,0 +1,15 @@
+name: Stripe (test mode)
+description: Stripe MCP for test-mode API workflows (development and CI).
+method: stdio
+command: npx
+args: ["-y", "@stripe/mcp@latest"]
+dependencies:
+  env:
+    STRIPE_SECRET_KEY:
+      secret:
+        provider: op
+        ref: op://Example Vault/AI Tools/STRIPE_TEST_SECRET_KEY
+  binaries:
+    - name: npx
+      version:
+        require: ~10.0.0

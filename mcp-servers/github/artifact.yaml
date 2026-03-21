@@ -1,0 +1,17 @@
+name: GitHub
+description: GitHub repository, issue, and pull request operations via authenticated GitHub access.
+method: stdio
+command: sh
+args:
+  [
+    "-c",
+    "GITHUB_PERSONAL_ACCESS_TOKEN=$(gh auth token) npx -y @modelcontextprotocol/server-github",
+  ]
+dependencies:
+  binaries:
+    - name: npx
+      version:
+        require: ~10.0.0
+    - name: gh
+      version:
+        require: ^2.0.0

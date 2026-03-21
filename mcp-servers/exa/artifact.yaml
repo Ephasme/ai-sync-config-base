@@ -1,0 +1,10 @@
+name: Exa
+description: Web search and content discovery via Exa.
+method: http
+url: https://mcp.exa.ai/mcp
+dependencies:
+  env:
+    EXA_API_KEY:
+      secret:
+        provider: op
+        ref: op://Example Vault/AI Tools/EXA_API_KEY

@@ -1,0 +1,4 @@
+name: Excalidraw
+description: Interactive sketch-style diagrams and whiteboard visuals via Excalidraw MCP.
+method: http
+url: https://mcp.excalidraw.com

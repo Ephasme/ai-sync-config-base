@@ -1,0 +1,4 @@
+name: create-rule
+description: Create an ai-sync source rule artifact in an ai-config repository. Use
+  when you need a new reusable rule under rules/<slug>/artifact.yaml with neutral,
+  cross-client guidance and cited best practices.

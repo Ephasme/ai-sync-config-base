@@ -1,0 +1,23 @@
+name: AWS CloudWatch
+description: AWS CloudWatch logs and metrics access for operational troubleshooting.
+method: stdio
+command: uvx
+args: ["awslabs.cloudwatch-mcp-server@latest"]
+dependencies:
+  env:
+    FASTMCP_LOG_LEVEL:
+      local:
+        default: "ERROR"
+      description: Log level for the MCP server process.
+    AWS_PROFILE:
+      local:
+        default: "default"
+      description: Local AWS profile used for AWS MCP servers.
+    AWS_REGION:
+      local:
+        default: us-east-1
+      description: AWS region for CloudWatch resources.
+  binaries:
+    - name: uvx
+      version:
+        require: ^0.9.9

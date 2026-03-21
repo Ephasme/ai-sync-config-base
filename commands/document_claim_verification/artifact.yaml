@@ -1,0 +1,4 @@
+name: Document claim verification
+description:
+  Forensic fact-checking of factual claims in technical documents using
+  an evidence hierarchy and cross-referencing against authoritative sources.

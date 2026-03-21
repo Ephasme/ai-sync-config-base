@@ -1,0 +1,3 @@
+name: Evaluate plan todos
+description: Evaluate a plan's todo list for consistency, granularity, clarity, actionability,
+  and dependency order.
