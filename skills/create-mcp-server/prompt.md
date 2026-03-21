@@ -171,7 +171,8 @@ dependencies:
 ```
 
 - Use `dependencies.env` for all dependency declarations (literal / local / secret).
-- For MCP servers, do not author top-level `env`; `ai-sync` synthesizes rendered subprocess `env` directly from `dependencies.env`.
+- For MCP servers, prefer `dependencies.env` only; `ai-sync` synthesizes rendered subprocess `env` from it. Optional `inject_as` sets the subprocess env var name while the mapping key stays unique (avoids merge conflicts when two servers need the same tool env name, for example two Stripe keys both exposed as `STRIPE_SECRET_KEY`).
+- Avoid top-level `env` on MCP `artifact.yaml` unless you need `${VAR_NAME}` interpolation in extra fields; prefer `inject_as` for secret-to-subprocess renaming.
 - Keep `${VAR_NAME}` placeholders in other runtime-bearing fields (`headers`, `auth`, `oauth`, `url`, `args`) when runtime interpolation is needed.
 
 ## Neutrality Requirement
