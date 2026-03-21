@@ -7,9 +7,7 @@ dependencies:
   env:
     STRIPE_LIVE_SECRET_KEY:
       inject_as: STRIPE_SECRET_KEY
-      secret:
-        provider: op
-        ref: op://Example Vault/AI Tools/STRIPE_LIVE_SECRET_KEY
+      local: {}
   binaries:
     - name: npx
       version:

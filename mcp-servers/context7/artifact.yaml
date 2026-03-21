@@ -6,9 +6,7 @@ args: ["-y", "@upstash/context7-mcp"]
 dependencies:
   env:
     CONTEXT7_API_KEY:
-      secret:
-        provider: op
-        ref: op://Example Vault/AI Tools/CONTEXT7_API_KEY
+      local: {}
   binaries:
     - name: npx
       version:

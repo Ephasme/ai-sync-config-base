@@ -107,7 +107,7 @@ dependencies:
     AWS_REGION: "us-east-1"
 ```
 
-**http server with secret**:
+**http server with local env (API key in `.env.ai-sync`)**:
 
 ```yaml
 name: Exa
@@ -117,9 +117,7 @@ url: https://mcp.exa.ai/mcp
 dependencies:
   env:
     EXA_API_KEY:
-      secret:
-        provider: op
-        ref: op://<vault>/<item>/<field>
+      local: {}
 ```
 
 **stdio server via mcp-remote proxy**:
@@ -161,18 +159,16 @@ dependencies:
     AWS_PROFILE:
       local: {}
     EXA_API_KEY:
-      secret:
-        provider: op
-        ref: op://<vault>/<item>/<field>
+      local: {}
   binaries:
     - name: npx
       version:
         require: ~10.0.0
 ```
 
-- Use `dependencies.env` for all dependency declarations (literal / local / secret).
+- Use `dependencies.env` for all dependency declarations (literal or `local: {}` for values users set in `.env.ai-sync`; `secret` exists in ai-sync but this config repo standardizes on `local`).
 - For MCP servers, prefer `dependencies.env` only; `ai-sync` synthesizes rendered subprocess `env` from it. Optional `inject_as` sets the subprocess env var name while the mapping key stays unique (avoids merge conflicts when two servers need the same tool env name, for example two Stripe keys both exposed as `STRIPE_SECRET_KEY`).
-- Avoid top-level `env` on MCP `artifact.yaml` unless you need `${VAR_NAME}` interpolation in extra fields; prefer `inject_as` for secret-to-subprocess renaming.
+- Avoid top-level `env` on MCP `artifact.yaml` unless you need `${VAR_NAME}` interpolation in extra fields; prefer `inject_as` for subprocess env renaming.
 - Keep `${VAR_NAME}` placeholders in other runtime-bearing fields (`headers`, `auth`, `oauth`, `url`, `args`) when runtime interpolation is needed.
 
 ## Neutrality Requirement
@@ -202,7 +198,7 @@ In the cloned directory:
 
 1. Create `mcp-servers/<server-id>/artifact.yaml`.
 2. Add `dependencies.binaries` in `artifact.yaml` if the server uses a runtime tool.
-3. Add `dependencies.env` in `artifact.yaml` for env/secret requirements.
+3. Add `dependencies.env` in `artifact.yaml` for env requirements (use `local: {}` for sensitive values).
 
 ### Step 3 — Commit, push, and open PR
 
@@ -223,7 +219,7 @@ Report the PR URL to the user.
 3. Create directory `mcp-servers/<server-id>/` in the resolved config repo (or cloned directory for remote).
 4. Write `artifact.yaml` following the schema above.
 5. Declare binary dependencies in `artifact.yaml` under `dependencies.binaries` if the server uses a runtime tool.
-6. Declare all required env vars/secrets in `artifact.yaml` under `dependencies.env`.
+6. Declare all required env vars in `artifact.yaml` under `dependencies.env` (sensitive ones as `local: {}`).
 7. For remote configs, follow the Remote Config Workflow to submit a PR.
 8. Verify no writes occurred in global or generated client paths.
 9. Summarize what was created and where.
@@ -232,7 +228,7 @@ Report the PR URL to the user.
 
 - [ ] `mcp-servers/<server-id>/artifact.yaml` created in an ai-config repo
 - [ ] `artifact.yaml` passes the ai-sync schema (valid `method`, required fields present)
-- [ ] Secrets use `op://` references in `artifact.yaml` `dependencies.env` — no plaintext credentials
+- [ ] Sensitive env vars use `local: {}` in `artifact.yaml` `dependencies.env`; users supply values via `.env.ai-sync` — no credentials committed in the config repo
 - [ ] `dependencies.binaries` declared in `artifact.yaml` if a runtime tool is needed
 - [ ] No client-specific identifiers
 - [ ] No writes to `.cursor/*`, `.codex/*`, `.gemini/*`, `.claude/*`, or `~/.{cursor,codex,gemini,claude}`
