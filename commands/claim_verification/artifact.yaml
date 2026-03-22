@@ -1,0 +1,5 @@
+name: Claim verification
+description:
+  Forensic fact-checking of factual claims in technical text (documents,
+  transcripts, conversations, tickets, notes) using an evidence hierarchy
+  and cross-referencing against authoritative sources.

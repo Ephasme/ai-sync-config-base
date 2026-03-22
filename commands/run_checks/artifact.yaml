@@ -1,2 +1,0 @@
-name: Run checks
-description: Run project validation using package.json scripts only.
