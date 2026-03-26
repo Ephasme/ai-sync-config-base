@@ -24,4 +24,4 @@ dependencies:
   binaries:
     - name: uvx
       version:
-        require: ^0.9.9
+        require: ~0.10.0
