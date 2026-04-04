@@ -4,7 +4,7 @@ Add MCP server definitions to `ai-sync` source repos only. Do not write client-s
 
 ## Hard Safety Constraints
 
-1. Create MCP server artifacts only at `mcp-servers/<server-id>/artifact.yaml` in an **ai-config** repo.
+1. Create MCP server artifacts only at `mcp_servers/<server-id>/artifact.yaml` in an **ai-config** repo.
 2. Never create or edit generated/client outputs directly:
    - `.cursor/*`
    - `.codex/*`
@@ -54,9 +54,9 @@ If any critical input is missing, ask concise follow-up questions.
 ## ai-sync Artifact Mapping
 
 - Artifact type: `mcp-server`
-- Required path: `mcp-servers/<server-id>/artifact.yaml`
+- Required path: `mcp_servers/<server-id>/artifact.yaml`
 - Reference ID shape: `<source-alias>/<server-id>`
-- Compatibility note: ai-sync resolves MCP servers by directory name under `mcp-servers/`.
+- Compatibility note: ai-sync resolves MCP servers by directory name under `mcp_servers/`.
 
 ## artifact.yaml Schema
 
@@ -196,7 +196,7 @@ git -C <clone-dir> checkout -b ai-sync/add-mcp-server-<server-id>
 
 In the cloned directory:
 
-1. Create `mcp-servers/<server-id>/artifact.yaml`.
+1. Create `mcp_servers/<server-id>/artifact.yaml`.
 2. Add `dependencies.binaries` in `artifact.yaml` if the server uses a runtime tool.
 3. Add `dependencies.env` in `artifact.yaml` for env requirements (use `local: {}` for sensitive values).
 
@@ -216,7 +216,7 @@ Report the PR URL to the user.
 
 1. Resolve target ai-config repository (Config Resolution above).
 2. Confirm `<server-id>`, transport method, and required configuration.
-3. Create directory `mcp-servers/<server-id>/` in the resolved config repo (or cloned directory for remote).
+3. Create directory `mcp_servers/<server-id>/` in the resolved config repo (or cloned directory for remote).
 4. Write `artifact.yaml` following the schema above.
 5. Declare binary dependencies in `artifact.yaml` under `dependencies.binaries` if the server uses a runtime tool.
 6. Declare all required env vars in `artifact.yaml` under `dependencies.env` (sensitive ones as `local: {}`).
@@ -226,7 +226,7 @@ Report the PR URL to the user.
 
 ## Completion Checklist
 
-- [ ] `mcp-servers/<server-id>/artifact.yaml` created in an ai-config repo
+- [ ] `mcp_servers/<server-id>/artifact.yaml` created in an ai-config repo
 - [ ] `artifact.yaml` passes the ai-sync schema (valid `method`, required fields present)
 - [ ] Sensitive env vars use `local: {}` in `artifact.yaml` `dependencies.env`; users supply values via `.env.ai-sync` — no credentials committed in the config repo
 - [ ] `dependencies.binaries` declared in `artifact.yaml` if a runtime tool is needed

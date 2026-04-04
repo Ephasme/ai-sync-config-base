@@ -1,11 +1,11 @@
 # Create ai-sync Subagent Artifacts
 
-In `ai-sync`, reusable agent definitions come from prompt bundles under `prompts/<name>/`.
+In `ai-sync`, reusable agent definitions come from prompt bundles under `agents/<name>/`.
 When asked to "create a subagent", create a prompt artifact in an ai-config source repo.
 
 ## Hard Safety Constraints
 
-1. Create subagent bundles only at `prompts/<name>/artifact.yaml` plus `prompts/<name>/prompt.md` in an **ai-config** repo.
+1. Create subagent bundles only at `agents/<name>/artifact.yaml` plus `agents/<name>/prompt.md` in an **ai-config** repo.
 2. Never create or edit generated/client outputs directly:
    - `.cursor/*`
    - `.codex/*`
@@ -46,7 +46,7 @@ Collect before writing:
 - Output contract (required sections/format)
 - Safety constraints and forbidden actions
 - Target ai-config repository path (resolved via Config Resolution above)
-- Bundle name for `prompts/<name>/` (stable identifier)
+- Bundle name for `agents/<name>/` (stable identifier)
 - Metadata values for the YAML file (`slug`, `name`, `description`)
 
 If any are unclear, ask targeted questions first.
@@ -56,8 +56,8 @@ If any are unclear, ask targeted questions first.
 - User intent: "subagent"
 - ai-sync artifact type: `prompt`
 - Required files:
-  - `prompts/<name>/artifact.yaml`
-  - `prompts/<name>/prompt.md`
+  - `agents/<name>/artifact.yaml`
+  - `agents/<name>/prompt.md`
 - Reference ID shape: `<source-alias>/<name>`
 
 ## Prompt YAML Compatibility (Critical)
@@ -65,7 +65,7 @@ If any are unclear, ask targeted questions first.
 `ai-sync` prompt metadata is stored directly in `artifact.yaml`.
 
 - Prompt body lives in sibling `prompt.md`.
-- The bundle entry file is always `artifact.yaml`; optional helper assets may live under `prompts/<name>/files/`, but non-skill bundle assets are not synced to client outputs yet.
+- The bundle entry file is always `artifact.yaml`; optional helper assets may live under `agents/<name>/files/`, but non-skill bundle assets are not synced to client outputs yet.
 - Required metadata keys:
   - `name` — human-readable name. **Must be present.**
   - `description` — what this subagent does and when to use it. **Must be present.**
@@ -100,7 +100,7 @@ Preferred source categories:
 
 ## Prompt Template
 
-Use this template for `prompts/<name>/`:
+Use this template for `agents/<name>/`:
 
 ```yaml
 slug: <kebab-slug>
@@ -161,7 +161,7 @@ git -C <clone-dir> checkout -b ai-sync/add-subagent-<name>
 
 ### Step 2 — Create the artifact
 
-Create `prompts/<name>/artifact.yaml` and `prompts/<name>/prompt.md` in the cloned directory.
+Create `agents/<name>/artifact.yaml` and `agents/<name>/prompt.md` in the cloned directory.
 
 ### Step 3 — Commit, push, and open PR
 
@@ -182,14 +182,14 @@ Report the PR URL to the user.
 3. Draft prompt with clear inputs, workflow, output format, and guardrails.
 4. Add neutral wording and placeholders for variable context.
 5. Add best-practice references from recent reliable sources.
-6. Save `prompts/<name>/artifact.yaml` and `prompts/<name>/prompt.md` in the resolved config repo (or cloned directory for remote).
+6. Save `agents/<name>/artifact.yaml` and `agents/<name>/prompt.md` in the resolved config repo (or cloned directory for remote).
 7. For remote configs, follow the Remote Config Workflow to submit a PR.
 8. Verify no writes occurred in global or generated client paths.
 9. Summarize what was created and where.
 
 ## Completion Checklist
 
-- [ ] Created `prompts/<name>/artifact.yaml` and `prompts/<name>/prompt.md` in ai-config repo only
+- [ ] Created `agents/<name>/artifact.yaml` and `agents/<name>/prompt.md` in ai-config repo only
 - [ ] YAML file includes only `slug`, `name`, and `description`
 - [ ] Did not use markdown frontmatter for ai-sync prompt metadata
 - [ ] No client-specific identifiers

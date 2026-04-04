@@ -1,4 +1,5 @@
 name: create-subagent
-description: Create ai-sync source agent prompts for subagent-like behavior at prompts/<slug>/artifact.yaml
+description:
+  Create ai-sync source agent prompts for subagent-like behavior at agents/<slug>/artifact.yaml
   in an ai-config repository only, with neutral and source-backed best practices.
 disable-model-invocation: true
